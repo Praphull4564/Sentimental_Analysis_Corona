@@ -1,0 +1,293 @@
+.comparison-page {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.comparison-page h1 {
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 4rem;
+}
+
+/* Overview Section */
+.comparison-overview {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 3rem;
+  margin-bottom: 5rem;
+}
+
+.model-card-large {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.model-card-large::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+}
+
+.model-card-large:nth-child(1)::before {
+  background: var(--accent-secondary);
+}
+
+.model-card-large:nth-child(2)::before {
+  background: var(--accent-primary);
+}
+
+.model-card-large:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--glass-shadow);
+}
+
+.model-card-large h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.model-card-large:nth-child(1) h2 { color: var(--accent-secondary); }
+.model-card-large:nth-child(2) h2 { color: var(--accent-primary); }
+
+.model-full-name {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.model-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+  flex: 1;
+}
+
+.spec-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.spec-item strong {
+  color: white;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.spec-item span {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+}
+
+.model-score {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  border: 1px solid var(--glass-border);
+}
+
+.score-label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.score-value {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Sections Common */
+.chart-section, .metrics-section, .sentiment-accuracy, .differences-section, .conclusion {
+  margin-bottom: 6rem;
+}
+
+.chart-section h2, .metrics-section h2, .sentiment-accuracy h2, .differences-section h2, .conclusion h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 3rem;
+  color: white;
+}
+
+/* Chart Container */
+.chart-container {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--glass-shadow);
+}
+
+/* Detailed Metrics Table */
+.metrics-table-container {
+  background: var(--glass-bg);
+  border-radius: 20px;
+  border: 1px solid var(--glass-border);
+  overflow: hidden;
+}
+
+.metrics-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.metrics-table th, .metrics-table td {
+  padding: 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metrics-table th {
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.metrics-table td {
+  color: var(--text-secondary);
+}
+
+.metric-name strong {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.bert-value { color: var(--accent-secondary); font-weight: 600; font-size: 1.1rem; }
+.roberta-value { color: var(--accent-primary); font-weight: 600; font-size: 1.1rem; }
+
+.difference .badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: var(--success);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* Differences Grid */
+.differences-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.diff-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s ease;
+}
+
+.diff-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.diff-card h3 {
+  color: white;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  text-align: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.diff-item {
+  margin-bottom: 1.5rem;
+}
+
+.diff-item strong {
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.diff-item:nth-of-type(1) strong { color: var(--accent-secondary); }
+.diff-item:nth-of-type(2) strong { color: var(--accent-primary); }
+
+.diff-item p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Conclusion Box */
+.conclusion-box {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+  border: 1px solid var(--glass-border);
+  padding: 3rem;
+  border-radius: 24px;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  position: relative;
+}
+
+.conclusion-box p {
+  margin-bottom: 1.5rem;
+}
+
+.conclusion-box p:last-child {
+  margin-bottom: 0;
+}
+
+.conclusion-box strong {
+  color: white;
+}
+
+@media (max-width: 900px) {
+  .comparison-overview {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .comparison-page h1 { font-size: 2.5rem; }
+  .comparison-page { padding: 3rem 1rem; }
+  .model-card-large { padding: 2rem; }
+  .metrics-table { display: block; overflow-x: auto; white-space: nowrap; }
+  .chart-section h2, .metrics-section h2, .sentiment-accuracy h2, .differences-section h2, .conclusion h2 {
+    font-size: 1.8rem;
+  }
+  .differences-grid {
+    grid-template-columns: 1fr;
+  }
+  .conclusion-box {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .comparison-page h1 { font-size: 2rem; }
+  .model-card-large h2 { font-size: 2rem; }
+  .score-value { font-size: 2.5rem; }
+  .chart-container { padding: 1rem; }
+  .conclusion-box {
+    padding: 1.5rem;
+    font-size: 1rem;
+  }
+}
+

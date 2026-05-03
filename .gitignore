@@ -1,0 +1,30 @@
+# Python virtual environment
+venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# IDE and editor files
+.vscode/
+*.swp
+
+# Build artifacts
+build/
+dist/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large dataset files
+cleaned_review.csv
+classified_review.csv
+berts_Sentiment.csv
+review.csv
+merged_review.csv
+ChatGPTDataset/
