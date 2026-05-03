@@ -21,6 +21,14 @@ dist/
 .DS_Store
 Thumbs.db
 
+# Environment files
+.env
+website/backend/.env
+
+# Node modules
+node_modules/
+website/node_modules/
+
 # Large dataset files
 cleaned_review.csv
 classified_review.csv

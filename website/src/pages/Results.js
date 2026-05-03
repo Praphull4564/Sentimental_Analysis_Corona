@@ -8,7 +8,10 @@ import './Results.css';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 gsap.registerPlugin(useGSAP);
 
-const API_BASE = 'http://localhost:5000';
+const API_BASE = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
+const isHostedWithoutApi = typeof window !== 'undefined' && !process.env.REACT_APP_API_BASE_URL &&
+  !window.location.hostname.startsWith('localhost') &&
+  !window.location.hostname.startsWith('127.');
 
 function Results() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -48,7 +51,10 @@ function Results() {
   // Download handler
   const handleDownload = async (type, name) => {
     if (!uploadsReady) {
-      alert('⚠️ Datasets are not yet uploaded to MongoDB.\n\nPlease run:\n  python upload_to_mongodb.py\n\nfrom the project root directory first.');
+      const message = isHostedWithoutApi
+        ? '⚠️ The deployed frontend cannot reach the backend API. Configure REACT_APP_API_BASE_URL to point to your live backend and redeploy.'
+        : '⚠️ Datasets are not yet uploaded to MongoDB.\n\nPlease run:\n  python upload_to_mongodb.py\n\nfrom the project root directory first.';
+      alert(message);
       return;
     }
 
@@ -489,9 +495,11 @@ function Results() {
           {uploadsReady === null && 'Checking database connection...'}
           {uploadsReady === true && 'Datasets are ready for download from MongoDB.'}
           {uploadsReady === false && (
-            <>
-              ⚠️ Datasets not yet uploaded. Run <code>python upload_to_mongodb.py</code> from the project root to enable downloads.
-            </>
+            isHostedWithoutApi ?
+              '⚠️ Backend API is not configured for this deployed site. Set REACT_APP_API_BASE_URL to your backend endpoint and redeploy.' :
+              <>
+                ⚠️ Datasets not yet uploaded. Run <code>python upload_to_mongodb.py</code> from the project root to enable downloads.
+              </>
           )}
         </p>
         <div className="download-buttons">
