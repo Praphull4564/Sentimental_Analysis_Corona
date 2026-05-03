@@ -8,30 +8,9 @@ import './Results.css';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 gsap.registerPlugin(useGSAP);
 
-const API_BASE = process.env.REACT_APP_API_BASE_URL || 'http://localhost:5000';
-const isHostedWithoutApi = typeof window !== 'undefined' && !process.env.REACT_APP_API_BASE_URL &&
-  !window.location.hostname.startsWith('localhost') &&
-  !window.location.hostname.startsWith('127.');
-
 function Results() {
   const [activeTab, setActiveTab] = useState('overview');
-  const [downloadStatus, setDownloadStatus] = useState({});
-  const [uploadsReady, setUploadsReady] = useState(null); // null = loading, true/false
   const containerRef = useRef(null);
-
-  // Check if uploads are ready
-  useEffect(() => {
-    const checkStatus = async () => {
-      try {
-        const res = await fetch(`${API_BASE}/api/upload-status`);
-        const data = await res.json();
-        setUploadsReady(data.uploaded);
-      } catch {
-        setUploadsReady(false);
-      }
-    };
-    checkStatus();
-  }, []);
 
   // Initial Entrance Animation
   useGSAP(() => {
@@ -48,62 +27,15 @@ function Results() {
     );
   }, [activeTab]);
 
-  // Download handler
-  const handleDownload = async (type, name) => {
-    if (!uploadsReady) {
-      const message = isHostedWithoutApi
-        ? '⚠️ The deployed frontend cannot reach the backend API. Configure REACT_APP_API_BASE_URL to point to your live backend and redeploy.'
-        : '⚠️ Datasets are not yet uploaded to MongoDB.\n\nPlease run:\n  python upload_to_mongodb.py\n\nfrom the project root directory first.';
-      alert(message);
-      return;
-    }
-
-    const key = `${type}-${name}`;
-    setDownloadStatus(prev => ({ ...prev, [key]: 'downloading' }));
-
-    try {
-      let url;
-      let filename;
-
-      if (type === 'dataset') {
-        url = `${API_BASE}/api/download/dataset/${name}`;
-        filename = `${name}.csv`;
-      } else if (type === 'report') {
-        url = `${API_BASE}/api/download/report`;
-        filename = 'Sentiment_Analysis_Report.pdf';
-      }
-
-      const res = await fetch(url);
-      if (!res.ok) {
-        const errData = await res.json();
-        throw new Error(errData.error || 'Download failed');
-      }
-
-      const blob = await res.blob();
-      const blobUrl = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = blobUrl;
-      link.download = filename;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      window.URL.revokeObjectURL(blobUrl);
-
-      setDownloadStatus(prev => ({ ...prev, [key]: 'done' }));
-      setTimeout(() => setDownloadStatus(prev => ({ ...prev, [key]: null })), 3000);
-    } catch (err) {
-      setDownloadStatus(prev => ({ ...prev, [key]: 'error' }));
-      alert(`❌ Download failed: ${err.message}`);
-      setTimeout(() => setDownloadStatus(prev => ({ ...prev, [key]: null })), 3000);
-    }
-  };
-
-  const getButtonLabel = (key, defaultLabel) => {
-    const status = downloadStatus[key];
-    if (status === 'downloading') return '⏳ Downloading...';
-    if (status === 'done') return '✅ Downloaded!';
-    if (status === 'error') return '❌ Failed';
-    return defaultLabel;
+  // Download handler for direct links
+  const handleDownload = (url, filename) => {
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = filename;
+    link.target = '_blank';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   // YOUR REAL DATA from analysis
@@ -488,36 +420,26 @@ function Results() {
         </section>
       )}
 
-      {/* Download Section — always visible */}
+      {/* Download Section — direct links */}
       <section className="download-section glass-panel" id="download-section">
         <h2 className="text-gradient">Export Findings</h2>
         <p className="download-description">
-          {uploadsReady === null && 'Checking database connection...'}
-          {uploadsReady === true && 'Datasets are ready for download from MongoDB.'}
-          {uploadsReady === false && (
-            isHostedWithoutApi ?
-              '⚠️ Backend API is not configured for this deployed site. Set REACT_APP_API_BASE_URL to your backend endpoint and redeploy.' :
-              <>
-                ⚠️ Datasets not yet uploaded. Run <code>python upload_to_mongodb.py</code> from the project root to enable downloads.
-              </>
-          )}
+          Download the datasets and report directly from Google Drive.
         </p>
         <div className="download-buttons">
           <button
-            className={`download-btn magnetic-btn ${!uploadsReady ? 'disabled' : ''}`}
-            onClick={() => handleDownload('dataset', 'cleaned_review')}
-            disabled={downloadStatus['dataset-cleaned_review'] === 'downloading'}
+            className="download-btn magnetic-btn"
+            onClick={() => handleDownload('YOUR_DRIVE_DATASET_LINK_HERE', 'cleaned_review.csv')}
             id="download-dataset"
           >
-            {getButtonLabel('dataset-cleaned_review', '📥 Download Cleaned Dataset (CSV)')}
+            📥 Download Cleaned Dataset (CSV)
           </button>
           <button
-            className={`download-btn magnetic-btn ${!uploadsReady ? 'disabled' : ''}`}
-            onClick={() => handleDownload('report', 'report')}
-            disabled={downloadStatus['report-report'] === 'downloading'}
+            className="download-btn magnetic-btn"
+            onClick={() => handleDownload('YOUR_DRIVE_REPORT_LINK_HERE', 'Sentiment_Analysis_Report.pdf')}
             id="download-report"
           >
-            {getButtonLabel('report-report', '📥 Download Report (PDF)')}
+            📥 Download Report (PDF)
           </button>
         </div>
       </section>
