@@ -8,6 +8,9 @@ import './Results.css';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 gsap.registerPlugin(useGSAP);
 
+// Google Drive folder with datasets and report
+const DRIVE_FOLDER_ID = '1bS-qFWKaLzEYchEI2wwul0WQxJhxvGgu';
+
 function Results() {
   const [activeTab, setActiveTab] = useState('overview');
   const containerRef = useRef(null);
@@ -26,17 +29,6 @@ function Results() {
       { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
     );
   }, [activeTab]);
-
-  // Download handler for direct links
-  const handleDownload = (url, filename) => {
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = filename;
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
 
   // YOUR REAL DATA from analysis
   const sentimentData = {
@@ -420,28 +412,30 @@ function Results() {
         </section>
       )}
 
-      {/* Download Section — direct links */}
+      {/* Download Section — Google Drive link */}
       <section className="download-section glass-panel" id="download-section">
         <h2 className="text-gradient">Export Findings</h2>
         <p className="download-description">
-          Download the datasets and report directly from Google Drive.
+          All datasets and the research report are available on Google Drive.
         </p>
         <div className="download-buttons">
-          <button
+          <a
+            href="https://drive.google.com/drive/folders/1bS-qFWKaLzEYchEI2wwul0WQxJhxvGgu?usp=sharing"
+            target="_blank"
+            rel="noopener noreferrer"
             className="download-btn magnetic-btn"
-            onClick={() => handleDownload('YOUR_DRIVE_DATASET_LINK_HERE', 'cleaned_review.csv')}
-            id="download-dataset"
+            id="download-all"
           >
-            📥 Download Cleaned Dataset (CSV)
-          </button>
-          <button
-            className="download-btn magnetic-btn"
-            onClick={() => handleDownload('YOUR_DRIVE_REPORT_LINK_HERE', 'Sentiment_Analysis_Report.pdf')}
-            id="download-report"
-          >
-            📥 Download Report (PDF)
-          </button>
+            📁 Open Google Drive Folder
+          </a>
         </div>
+        <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#94a3b8', textAlign: 'center' }}>
+          💾 Available files:<br/>
+          • cleaned_review.csv (67 MB)<br/>
+          • classified_review.csv (73.4 MB)<br/>
+          • berts_Sentiment.csv (80.2 MB)<br/>
+          • report.pdf (430 KB)
+        </p>
       </section>
     </main>
   );
