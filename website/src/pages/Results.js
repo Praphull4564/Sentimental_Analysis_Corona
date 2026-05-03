@@ -8,9 +8,6 @@ import './Results.css';
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title, Tooltip, Legend);
 gsap.registerPlugin(useGSAP);
 
-// Google Drive folder with datasets and report
-const DRIVE_FOLDER_ID = '1bS-qFWKaLzEYchEI2wwul0WQxJhxvGgu';
-
 function Results() {
   const [activeTab, setActiveTab] = useState('overview');
   const containerRef = useRef(null);
