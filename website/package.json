@@ -1,7 +1,7 @@
 {
   "name": "sentiment-analysis-showcase",
   "version": "1.0.0",
-  "description": "Professional website showcasing BERT & RoBERTa sentiment analysis project",
+  "description": "Exhibition website for Corona/COVID-19 sentiment analysis (BERT & RoBERTa)",
   "private": true,
   "dependencies": {
     "@gsap/react": "^2.1.2",

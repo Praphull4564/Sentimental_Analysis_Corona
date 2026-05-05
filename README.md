@@ -1,51 +1,58 @@
-# Sentimental_Analysis_Corona
+# Sentimental Analysis Corona
 
-Sentimental Analysis Corona is a research project that analyzes public sentiment around COVID-19 related comments using transformer-based models.
+Research project that studies **sentiment around the COVID-19 (Corona) pandemic** in large text collections. The work combines **Jupyter notebooks** (classical lexicon methods, emotion models, and **BERT**-style transformers across different waves/time slices) with a **`website/`** exhibition front end where methodology, charts, and model comparisons can be browsed without opening notebooks.
 
-## Project Overview
+**Live site (static React app):** [https://sentimental-analysis-corona.vercel.app/](https://sentimental-analysis-corona.vercel.app/)
 
-This repository contains a React-based presentation website and data assets used for sentiment model evaluation.
+---
 
-The project demonstrates how sentiment analysis can uncover positive, negative, and neutral trends in large text datasets, and how those trends can be visualized with charts and summary insights.
+## What this project is
 
-## Structure
+- **Goal:** Measure and compare **positive, negative, and neutral** (and related emotion-style) signals in corpus text tied to Corona discourse — for example baseline **VADER** runs, richer **emotion** notebooks, and **BERT** experiments on wave-specific splits (`corona_Bert_Wave1.ipynb`, `corona_Bert_Wave2.ipynb`, etc.).
+- **Why it matters:** Public reaction during a health crisis shows up in language; scalable sentiment models help summarize trends and contrast simpler baselines against contextual transformers.
 
-- `website/` — React frontend and static website assets.
-- `ChatGPTDataset/` — Local dataset files for analysis and testing.
-- `upload_to_mongodb.py` — Upload script to move cleaned CSV data into MongoDB.
-- Notebooks and data files for model analysis and reporting.
+---
 
-## How it works
+## Repository layout
 
-- The frontend shows sentiment distribution, model performance, and insights from BERT and RoBERTa analysis.
-The download section provides direct links to datasets and the project PDF report hosted on Google Drive.
+| Item | Role |
+|------|------|
+| **`website/`** | React (CRA) showcase: Home, Methodology, Results, Model Comparison — charts (Chart.js), page motion (GSAP). Details: **[website/README.md](website/README.md)**. |
+| **`*.ipynb`** | Core analysis: VADER (`corona_vader.ipynb`, wave notebooks), emotion (`corona_emo.ipynb`, `coronaw1_emo.ipynb`, `coronaw2_emo.ipynb`), BERT paths (`corona_Bert.ipynb`, `corona_Bert_Wave1.ipynb`, `corona_Bert_Wave2.ipynb`). |
+| **`merge.py`** | Merges multiple **Twitter-format** CSV exports from one folder into a single file for downstream cleaning (fixed column schema expected). |
+| **`upload_to_mongodb.py`** | Optional: uploads **`cleaned_review.csv`** and **`report.pdf`** from the repo root into **MongoDB Atlas** (see `website/backend/.env` → `MONGODB_URI`; create the file if you use uploads). |
 
-## Live Demo
+Data files (CSVs, PDFs) may live outside Git; add them locally where scripts and notebooks expect them.
 
-- Frontend live at: https://sentimental-analysis-corona.vercel.app/
+---
 
-## Important Notes
+## Run the showcase site locally
 
-The frontend is static and can be hosted on Vercel.
-Dataset download functionality uses direct Google Drive links.
-
-## Local development
-
-1. Install frontend dependencies:
+Requirements: Node.js 14+ and npm.
 
 ```powershell
 cd website
 npm install
-```
-
-2. Start the frontend:
-
-```powershell
 npm start
 ```
 
-3. Configure MongoDB access by adding `MONGODB_URI` to `website/backend/.env`.
+Build: `npm run build` → `website/build/` for static hosting.
 
-## Development notes
+---
 
-The frontend uses direct Google Drive links for downloads.
+## Run notebooks and Python tooling
+
+Use Python 3 + Jupyter with the packages each notebook imports (`pandas`, etc.).
+
+1. Open the Corona notebooks from the repo root.
+2. **`merge.py`:** inspect and run with paths that match your raw CSV layout.
+3. **`upload_to_mongodb.py`:** set `MONGODB_URI`, place `cleaned_review.csv` / `report.pdf` at the repo root when running.
+
+---
+
+## Documentation
+
+- **`README.md` (this file)** — project purpose and repo map.
+- **[`website/README.md`](website/README.md)** — front-end routes, tech stack, deployment notes.
+
+Educational / demonstration use; align on-page numbers and copy in `website/src/pages/` with your actual notebook outputs when presenting results.

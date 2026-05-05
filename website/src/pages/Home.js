@@ -103,11 +103,11 @@ function Home() {
             Research Project
           </div>
           <h1 className="hero-title">
-            Analyze Sentiments with <br />
+            Corona discourse, <br />
             <span className="text-gradient">BERT & RoBERTa</span>
           </h1>
           <p className="hero-subtitle">
-            Leveraging state-of-the-art transformer models to decode complex human emotions from Reddit and ChatGPT datasets with 95%+ accuracy.
+            Transformer-based sentiment analysis on COVID-19–era public text: contrasting lexicon-era baselines and wave-specific BERT notebooks with a clear BERT versus RoBERTa story in the charts.
           </p>
           <div className="hero-buttons">
             <Link to="/results" className="btn btn-primary magnetic-btn" id="hero-explore-btn">
@@ -121,7 +121,7 @@ function Home() {
         <div className="hero-stats">
           <div className="stat-card glass-panel interactive-card" id="stat-reviews">
             <div className="stat-number text-gradient">50K+</div>
-            <div className="stat-label">Reviews Analyzed</div>
+            <div className="stat-label">Texts analyzed</div>
           </div>
           <div className="stat-card glass-panel interactive-card" id="stat-models">
             <div className="stat-number text-gradient">2</div>
@@ -142,7 +142,7 @@ function Home() {
             <div className="card-icon">📊</div>
             <h3>Data Mining</h3>
             <p>
-              We compiled a robust, multi-domain dataset sourced directly from complex Reddit threads and nuanced ChatGPT interactions.
+              Corpus text reflecting Corona / COVID-19 discussion timelines (including wave-aligned splits in our notebooks), cleaned and labeled for polarity before model training.
             </p>
           </div>
 
@@ -166,7 +166,7 @@ function Home() {
             <div className="card-icon">🎯</div>
             <h3>Dual-Model Comparison</h3>
             <p>
-              Compare BERT and RoBERTa predictions side by side to identify which architecture best understands conversational sentiment.
+              Compare BERT and RoBERTa side by side on the same Corona-oriented task to see which transformer setup tracks public sentiment signals more reliably.
             </p>
           </div>
         </div>
@@ -177,12 +177,12 @@ function Home() {
         <h2 className="section-title">Why This Matters</h2>
         <div className="features-grid">
           <div className="feature glass-panel interactive-card" id="feature-context">
-            <h4>✨ Multi-Source Context</h4>
-            <p>Models trained on diverse text sources adapt better to real-world language variations.</p>
+            <h4>✨ Wave-aware context</h4>
+            <p>Pandemic language shifts across time slices; aligning data with Corona waves helps reveal how sentiment models track evolving public wording.</p>
           </div>
           <div className="feature glass-panel interactive-card" id="feature-comparison">
             <h4>⚖️ BERT vs RoBERTa</h4>
-            <p>Discover which architecture handles conversational AI sentiment more effectively.</p>
+            <p>See which architecture handles ambiguous crisis-era language more effectively.</p>
           </div>
           <div className="feature glass-panel interactive-card" id="feature-viz">
             <h4>🎨 Interactive Visualizations</h4>

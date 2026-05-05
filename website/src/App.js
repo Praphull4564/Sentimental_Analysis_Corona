@@ -125,7 +125,7 @@ function App() {
       <nav className="navbar" ref={navRef}>
         <div className="nav-container">
           <Link to="/" className="nav-logo" onClick={handleNavClick}>
-            <span>🧠</span> SentimentAI
+            <span>📊</span> Corona Sentiment
           </Link>
 
           {/* Hamburger Button */}
@@ -194,8 +194,8 @@ function App() {
       <footer className="footer">
         <div className="footer-content">
           <div className="footer-brand">
-            <span className="footer-logo">🧠 SentimentAI</span>
-            <p>Context-Based Sentiment Analysis using BERT & RoBERTa Transformer Models</p>
+            <span className="footer-logo">📊 Corona Sentiment</span>
+            <p>COVID-19 (Corona) public-text sentiment analysis with BERT & RoBERTa</p>
           </div>
           <div className="footer-links">
             <div className="footer-link-group">
@@ -214,7 +214,7 @@ function App() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 SentimentAI — BERT & RoBERTa Sentiment Analysis Project</p>
+            <p>&copy; 2024 Sentimental Analysis Corona</p>
           </div>
         </div>
       </footer>

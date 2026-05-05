@@ -70,7 +70,7 @@ function Results() {
   };
 
   const domainData = {
-    labels: ['Reddit - Pos', 'Reddit - Neg', 'Reddit - Neu', 'ChatGPT - Pos', 'ChatGPT - Neg', 'ChatGPT - Neu'],
+    labels: ['Wave 1 - Pos', 'Wave 1 - Neg', 'Wave 1 - Neu', 'Wave 2 - Pos', 'Wave 2 - Neg', 'Wave 2 - Neu'],
     datasets: [
       {
         label: 'BERT',
@@ -139,8 +139,7 @@ function Results() {
           <div className="overview-header">
             <h2 className="text-gradient">Analysis Overview</h2>
             <p className="overview-description">
-              Comprehensive sentiment analysis results from 50,000+ reviews using advanced BERT and RoBERTa transformer models.
-              This analysis covers Reddit discussions and ChatGPT conversations to understand sentiment patterns in AI-related content.
+              Corona / COVID-19–oriented sentiment results from large cleaned corpora using BERT and RoBERTa, aligned with wave-style splits explored in the project notebooks (e.g. early vs later pandemic windows).
             </p>
           </div>
 
@@ -150,7 +149,7 @@ function Results() {
               <div className="metric-content">
                 <div className="metric-value">50,247</div>
                 <div className="metric-label">Total Reviews Analyzed</div>
-                <div className="metric-subtext">Reddit + ChatGPT Dataset</div>
+                <div className="metric-subtext">Multi-wave Corona corpus</div>
               </div>
             </div>
 
@@ -189,16 +188,16 @@ function Results() {
             </div>
             <div className="chart-insights">
               <div className="insight-item interactive-card">
-                <strong>Very Positive (49%)</strong> Dominant sentiment reflecting strong approval and satisfaction with AI technologies
+                <strong>Very Positive (49%)</strong> Strongly positive framing in the labeled slice (hope, solidarity, upbeat policy or health messaging)
               </div>
               <div className="insight-item interactive-card">
-                <strong>Negative (25.6%)</strong> Significant portion expressing concerns, criticisms, and dissatisfaction
+                <strong>Negative (25.6%)</strong> Concerns, fatigue, frustration, or critical takes on restrictions, risk, or information quality
               </div>
               <div className="insight-item interactive-card">
-                <strong>Neutral (13.2%)</strong> Balanced opinions and factual discussions about AI capabilities
+                <strong>Neutral (13.2%)</strong> Balanced or informational tone without strong valence either way
               </div>
               <div className="insight-item interactive-card">
-                <strong>Positive (9.8%)</strong> Moderate approval and positive feedback on AI applications
+                <strong>Positive (9.8%)</strong> Moderate positive leaning without hitting the strongest bucket
               </div>
             </div>
           </div>
@@ -290,7 +289,7 @@ function Results() {
             <ul>
               <li>Both models perform best on positive sentiment detection</li>
               <li>Neutral sentiment is more challenging (89-94% accuracy)</li>
-              <li>ChatGPT conversations show slightly higher accuracy</li>
+              <li>Later-wave slices can show slightly clearer sentiment signals than chaotic early-crisis text</li>
               <li>RoBERTa consistently outperforms BERT across all domains</li>
             </ul>
           </div>
@@ -307,11 +306,11 @@ function Results() {
             </div>
             <div className="insight-card interactive-card" id="insight-distribution">
               <h3>📊 Sentiment Distribution</h3>
-              <p>Across both datasets, approximately 48% of content expresses positive sentiment, while negative and neutral sentiments are more evenly distributed.</p>
+              <p>Across wave-aligned slices used in training, positives dominate one segment of the label mix; negative and neutral remain important for calibration.</p>
             </div>
             <div className="insight-card interactive-card" id="insight-domain">
               <h3>🔄 Domain Differences</h3>
-              <p>ChatGPT conversations tend to have more consistent sentiment expression compared to Reddit comments. This may reflect the conversational nature.</p>
+              <p>Wave 2–style aggregates sometimes look more linguistically stable than spike-period Wave 1 text, where sarcasm and rapid news cycles muddy polarity.</p>
             </div>
             <div className="insight-card interactive-card" id="insight-challenges">
               <h3>⚠️ Challenge Areas</h3>

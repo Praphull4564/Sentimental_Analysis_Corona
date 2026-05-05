@@ -73,13 +73,13 @@ function Methodology() {
           <div className="content-box interactive-card">
             <h3>Sources</h3>
             <ul>
-              <li><strong>Reddit:</strong> Comments from various subreddits discussing ChatGPT and AI topics</li>
-              <li><strong>ChatGPT:</strong> Direct responses and conversations with ChatGPT about different topics</li>
+              <li><strong>Public social text:</strong> Posts and comments from COVID-19 / Corona-related discourse (timing and wave segmentation follow the Jupyter pipelines in this repo).</li>
+              <li><strong>Ingest tooling:</strong> Raw exports can be merged and normalized before cleaning (see <code>merge.py</code> where Twitter-schema CSV bundles are combined).</li>
             </ul>
             <h3>Dataset Characteristics</h3>
             <ul>
-              <li>Total Records: 50,000+</li>
-              <li>Text Length: Variable (short comments to longer responses)</li>
+              <li>Total Records: 50,000+ (exhibition UI figure; reconcile with cleaned exports)</li>
+              <li>Text Length: Variable (short posts to longer threads)</li>
               <li>Sentiment Classes: Positive, Negative, Neutral</li>
               <li>Languages: Primarily English</li>
             </ul>
