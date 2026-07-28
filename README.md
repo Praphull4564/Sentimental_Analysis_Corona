@@ -2,7 +2,7 @@
 
 Research project that studies **sentiment around the COVID-19 (Corona) pandemic** in large text collections. The work combines **Jupyter notebooks** (classical lexicon methods, emotion models, and **BERT**-style transformers across different waves/time slices) with a **`website/`** exhibition front end where methodology, charts, and model comparisons can be browsed without opening notebooks.
 
-**Live site (static React app):** [https://sentimental-analysis-corona.vercel.app/](https://sentimental-analysis-corona.vercel.app/)
+
 
 ---
 
