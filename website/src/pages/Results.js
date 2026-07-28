@@ -425,13 +425,13 @@ function Results() {
             📁 Open Google Drive Folder
           </a>
         </div>
-        <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#94a3b8', textAlign: 'center' }}>
-          💾 Available files:<br/>
-          • cleaned_review.csv (67 MB)<br/>
-          • classified_review.csv (73.4 MB)<br/>
-          • berts_Sentiment.csv (80.2 MB)<br/>
-          • report.pdf (430 KB)
-        </p>
+        // <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#94a3b8', textAlign: 'center' }}>
+        //   💾 Available files:<br/>
+        //   • cleaned_review.csv (67 MB)<br/>
+        //   • classified_review.csv (73.4 MB)<br/>
+        //   • berts_Sentiment.csv (80.2 MB)<br/>
+        //   • report.pdf (430 KB)
+        // </p>
       </section>
     </main>
   );
